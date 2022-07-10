@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Toolgun</title>
+    <style lang="scss">
+        @font-face {
+            font-family: tahomaBold;
+            src: url(tahomabd.ttf);
+        }
+
+        body {
+            height: 100vh;
+            width: 100vw;
+            font-family: tahomaBold;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #screen {
+            background: url("screen_bg.png");
+            width: 256px;
+            height: 256px;
+        }
+
+        .marquee-container {
+            height: 50px;
+            position: relative;
+            top: 78px;
+            overflow: hidden;
+        }
+
+        .marquee-container .marquee {
+            padding-left: 25px;
+            transform: translateX(200%);
+            position: absolute;
+            white-space: nowrap;
+            animation: marquee 15s linear infinite;
+        }
+
+        .marquee-container .marquee1 {
+            animation-delay: -10s;
+        }
+
+        .marquee-container .marquee2 {
+            animation-delay: -5s;
+        }
+
+        .marquee-container .marquee3 {
+            animation-delay: 0s;
+        }
+
+        .marquee-container span {
+            color: white;
+            text-shadow: 2px 2px black;
+            font-size: 2.5rem;
+        }
+
+        @keyframes marquee {
+            0% {
+                transform: translateX(200%);
+            }
+
+            100% {
+                transform: translateX(-100%);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="screen">
+        <div class="marquee-container">
+            <div class="marquee marquee1">
+                <span>Ball Socket</span>
+            </div>
+            <div class="marquee marquee2">
+                <span>Ball Socket</span>
+            </div>
+            <div class="marquee marquee3">
+                <span>Ball Socket</span>
+            </div>
+        </div>
+    </div>
+</body>
+
+<script>
+    const tools = [
+        "Axis",
+        "Ball Socket",
+        "Elastic",
+        "Hydraulic",
+        "Motor",
+        "Muscle",
+        "Pulley",
+        "Rope",
+        "Slider",
+        "Weld",
+        "Pulley",
+        "Winch",
+        "Balloon",
+        "Button",
+        "Duplicator",
+        "Dynamite",
+        "Emitter",
+        "Hover Ball",
+        "Lamps",
+        "Light",
+        "No-Collide",
+        "Physical Properties",
+        "Remover",
+        "Thruster",
+        "Wheel",
+        "Eye Poser",
+        "Face Poser",
+        "Finger Poser",
+        "Inflator",
+        "Camera",
+        "Color",
+        "Material",
+        "Paint",
+        "Trails"
+    ];
+    const currentToolSpans = document.querySelectorAll(".marquee-container span");
+
+    function changeTool() {
+        setTimeout(() => {
+            const newTool = tools[Math.floor(Math.random() * tools.length)];
+            currentToolSpans.forEach(text => {
+                text.innerHTML = newTool;
+            });
+            changeTool();
+        }, 5000 + Math.random() * 5000); // random delay between 5s and 10s
+    }
+
+    changeTool();
+
+</script>
+
+</html>
